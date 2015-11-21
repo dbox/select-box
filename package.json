@@ -1,0 +1,23 @@
+{
+  "name": "select-box.scss",
+  "version": "0.0.1",
+  "description": "A Sass mixin for quickly and easily styling the dreaded <select> element.",
+  "main": "dist/select-box.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbox/select-box.scss.git"
+  },
+  "keywords": [
+    "select",
+    "dropdown"
+  ],
+  "author": "Daniel Box",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dbox/select-box.scss/issues"
+  },
+  "homepage": "https://github.com/dbox/select-box.scss#readme"
+}
