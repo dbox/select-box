@@ -30,16 +30,41 @@
 
   @return (map-get($colors, 'red') * .2126) + (map-get($colors, 'green') * .7152) + (map-get($colors, 'blue') * .0722);
 }
+//- Mixin: Select-box
+///
+/// Styling select boxes is the worst. Hopefully this makes life a little
+/// easier. Automagically colors elements based on luminance of the backbground
+/// color. Pass it a custom arrow image, or use a handy css-only triangle by
+/// default. Must be called on an element that wraps the select. Works with
+/// Safari, Chrome, Firefox, and IE10+.
+///
+/// @param {variable} $bg-color [#FFF] - default background-color
+/// @param {variable} $border-radius [.2em] - border radius
+/// @param {variable} $arrow-image [null] - Custom image for the dropdown
+/// @param {variable} $arrow-size [6px] - Size of arrow image (change if image
+/// provided)
+/// @param {variable} $focus-glow [#B4DEFA] - Sets a glow around the dropdown
+/// when focused. Remove with 'null'
+/// @param {variable} $text-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $bg-hover-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $border-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $border-hover-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @group forms
+/// @example
+///   .select-wrapper {
+///     @include select-box();
+///   }
+///
+///   .select-wrapper {
+///    @include select-box(#efefef, 0px, $arrow-size: 15px, $arrow-image: "http://dbox.us/_img/sample-arrow.png")
+///   }
+/// @link http://codepen.io/dbox/pen/YyBdog
 
-// Mixin Select-box
-//
-// Styling select boxes is the WORST. Hopefully this makes life a little
-// easier. Pass it a custom arrow image, or use a handy css-only triangle
-// by default. Must be called on an element that wraps the select.
-// Works with Safari, Chrome, Firefox, and IE10+.
-
-@mixin select-box ($border-radius: .2em, $bg-color: #fff, $arrow-image: null, $arrow-size: 6px, $focus-glow: #b4defa, $text-color: null, $bg-hover-color: null, $border-color: null, $border-hover-color: null) {
-
+@mixin select-box ($bg-color: #FFF, $border-radius: .2em, $arrow-image: null, $arrow-size: 6px, $focus-glow: #B4DEFA, $text-color: null, $bg-hover-color: null, $border-color: null, $border-hover-color: null) {
   // Detect if bg color is dark or light, then serve some intelligent defaults based that color
   // todo: make more terse
 
@@ -49,7 +74,7 @@
   @if ($text-color) {
     $text-color: $text-color;
   } @else {
-    $text-color: if(luminance($bg-color) < $l-tolerance, #fff, rgba(#000, .7));
+    $text-color: if(luminance($bg-color) < $l-tolerance, #FFF, rgba(#000, .7));
   }
   @if ($bg-hover-color) {
     $bg-hover-color: $bg-hover-color;
@@ -67,7 +92,7 @@
     $border-hover-color: if(luminance($bg-color) < $l-tolerance, $bg-hover-color, rgba(#000, .45));
   }
   $arrow-color: if(luminance($bg-color) < $l-tolerance, rgba(255,255,255, .9), rgba(#000, .25));
-  $arrow-hover-color: if(luminance($bg-color) < $l-tolerance, #fff, rgba(#000, .45));
+  $arrow-hover-color: if(luminance($bg-color) < $l-tolerance, #FFF, rgba(#000, .45));
 
   border: 1px solid $border-color;
   border-radius: $border-radius;
