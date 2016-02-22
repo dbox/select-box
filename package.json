@@ -1,6 +1,6 @@
 {
   "name": "select-box.scss",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "A Sass mixin for quickly and easily styling the dreaded <select> element.",
   "main": "dist/select-box.scss",
   "scripts": {
